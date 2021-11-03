@@ -59,6 +59,8 @@ const SignIn = () => {
 
     return (
         <div className={styles.container}>
+            <div className={styles.circle}></div>
+            <div className={styles.circle2}></div>
             <form onSubmit={submitHandler} className={styles.formContainer}>
                 <h1 className={styles.title}>Sign in</h1>
                 <div className={styles.input}>
@@ -84,11 +86,11 @@ const SignIn = () => {
                 <div className={styles.checkBox}>
                     <label>I accept the privacy</label>
                     <input type="checkbox" name="isAccept" value={data.isAccept} onChange={changeHandler} onFocus={focusHandler} />
-                    {errors.isAccept && touched.isAccept && <span>{errors.isAccept}</span>}
+                    {errors.isAccept && touched.isAccept && <span className={styles.checkBoxError}>{errors.isAccept}</span>}
                 </div>
                 <div className={styles.footer}>
                     <button type="submit" className={styles.button}>SignIn</button>
-                    <a href="#" className={styles.link}>Login</a>
+                    <a href="/" className={styles.link}>Login</a>
                 </div>
             </form>
             <ToastContainer />
