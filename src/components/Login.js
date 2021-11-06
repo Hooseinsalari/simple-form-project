@@ -7,16 +7,14 @@ import { notify } from './Toastify';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import styles from "./SignIn.module.css"
+import styles from "./Login.module.css"
 import { Link } from 'react-router-dom';
 
-const SignIn = () => {
+const Login = () => {
 
     const [data, setData] = useState({
         name: "",
-        email: "",
         password: "",
-        confirmPassword: "",
         isAccept: false
     })
 
@@ -24,7 +22,7 @@ const SignIn = () => {
     const [touched, setTouched] = useState({});
 
     useEffect(() => {
-        setErrors(validation(data, 'signin'))
+        setErrors(validation(data, "login"))
         
     }, [data, touched])
 
@@ -50,9 +48,7 @@ const SignIn = () => {
             notify("Invalid data!" ,"error")
             setTouched({...touched,
             name:true,
-            email:true,
             password:true,
-            confirmPassword:true,
             isAccept:true
             })
         }
@@ -63,35 +59,26 @@ const SignIn = () => {
             <div className={styles.circle}></div>
             <div className={styles.circle2}></div>
             <form onSubmit={submitHandler} className={styles.formContainer}>
-                <h1 className={styles.title}>Sign in</h1>
+                <h1 className={styles.title}>Login</h1>
                 <div className={styles.input}>
                     <label>Name</label>
                     <input type="text" name="name" value={data.name} onChange={changeHandler} onFocus={focusHandler} required />
                     {errors.name && touched.name && <span>{errors.name}</span>}
                 </div>
                 <div className={styles.input}>
-                    <label>Email</label>
-                    <input type="email" name="email" value={data.email} onChange={changeHandler} onFocus={focusHandler} required />
-                    {errors.email && touched.email && <span>{errors.email}</span>}
-                </div>
-                <div className={styles.input}>
                     <label>Password</label>
                     <input type="password" name="password" value={data.password} onChange={changeHandler} onFocus={focusHandler} required />
                     {errors.password && touched.password && <span>{errors.password}</span>}
                 </div>
-                <div className={styles.input}>
-                    <label>Confirm password</label>
-                    <input type="password" name="confirmPassword" value={data.confirmPassword} onChange={changeHandler} onFocus={focusHandler} required />
-                    {errors.confirmPassword && touched.confirmPassword && <span>{errors.confirmPassword}</span>}
-                </div>
+        
                 <div className={styles.checkBox}>
                     <label>I accept the privacy</label>
                     <input type="checkbox" name="isAccept" value={data.isAccept} onChange={changeHandler} onFocus={focusHandler} />
                     {errors.isAccept && touched.isAccept && <span className={styles.checkBoxError}>{errors.isAccept}</span>}
                 </div>
                 <div className={styles.footer}>
-                    <button type="submit" className={styles.button}>SignIn</button>
-                    <Link to="/Login" className={styles.link}>Login</Link>
+                    <button type="submit" className={styles.button}>Login</button>
+                    <Link to="/" className={styles.link}>Sign in</Link>
                 </div>
             </form>
             <ToastContainer />
@@ -99,4 +86,4 @@ const SignIn = () => {
     );
 };
 
-export default SignIn;
+export default Login;
